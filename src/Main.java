@@ -20,6 +20,7 @@ public class Main {
         JLabel cpm = new JLabel("0.0");
         JLabel wpm = new JLabel("0");
         JLabel accuracy = new JLabel("0.0");
+        JPanel textPanel = new JPanel();
 
         JTextField pool = new JTextField(65);
         pool.setText(tpt.getCurrentCharacterPool());
@@ -107,7 +108,7 @@ public class Main {
                 }
                 tpt.startPractice();
 
-                JPanel textPanel = new JPanel();
+                textPanel.removeAll();
                 for (int i = 0; i < tpt.getCurrentText().length; i++) {
                     JLabel word = new JLabel(tpt.getCurrentText()[i]);
                     if (i == 0) {
