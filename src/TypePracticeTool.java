@@ -25,13 +25,13 @@ public class TypePracticeTool {
         currentCharacterPool = DEFAULT_CHARACTER_POOL;
     }
 
-    public void startPractice() {
+    public void startPractice(int minWLength, int maxWLenght, int textLength) {
         this.errors = 0;
         this.totalCharacters = 0;
         this.errorMode = false;
-        createNewText(1, 8, 15);
+        createNewText(minWLength, maxWLenght, textLength);
         this.startTime = System.currentTimeMillis();
-        System.out.println(this.totalCharacters);
+        
     }
 
     public boolean checkWord(String input) {

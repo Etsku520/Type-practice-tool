@@ -106,7 +106,7 @@ public class Main {
                 } {
 
                 }
-                tpt.startPractice();
+                tpt.startPractice(1, 8, 15);
 
                 textPanel.removeAll();
                 for (int i = 0; i < tpt.getCurrentText().length; i++) {
