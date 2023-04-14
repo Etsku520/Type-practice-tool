@@ -26,9 +26,10 @@ public class TypePracticeTool {
     }
 
     public void startPractice() {
-        createNewText(1, 8, 15);
         this.errors = 0;
+        this.totalCharacters = 0;
         this.errorMode = false;
+        createNewText(1, 8, 15);
         this.startTime = System.currentTimeMillis();
         System.out.println(this.totalCharacters);
     }
