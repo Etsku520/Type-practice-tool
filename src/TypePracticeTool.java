@@ -8,6 +8,7 @@ public class TypePracticeTool {
     private long startTime;
     private long endTime;
     private int wpm;
+    private double cpm;
     private int errors;
     private int totalCharacters;
     private boolean errorMode;
@@ -51,6 +52,7 @@ public class TypePracticeTool {
         } else {
             this.endTime = System.currentTimeMillis();
             this.wpm = (int) Math.round((this.currentText.length)/((this.endTime - this.startTime)/(1000.0*60)));
+            this.cpm = (this.totalCharacters)/((this.endTime - this.startTime)/(1000.0*60));
         }
 
         return !textEnd;
@@ -122,5 +124,9 @@ public class TypePracticeTool {
 
     public void setCurrentCharacterPool(String currentCharacterPool) {
         this.currentCharacterPool = currentCharacterPool;
+    }
+
+    public double getCpm() {
+        return cpm;
     }
 }

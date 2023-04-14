@@ -17,6 +17,7 @@ public class Main {
         TypePracticeTool tpt = new TypePracticeTool();
 
         JPanel panel = new JPanel();
+        JLabel cpm = new JLabel("0.0");
         JLabel wpm = new JLabel("0");
         JLabel accuracy = new JLabel("0.0");
 
@@ -64,6 +65,7 @@ public class Main {
                             if (!moreWords) {
                                 wpm.setText(String.valueOf(tpt.getWpm()));
                                 accuracy.setText(String.format("%3.3f", tpt.getAccuracy()));
+                                cpm.setText(String.format("%3.3f", tpt.getCpm()));
                                 panel.remove(panel.getComponentCount()-1);
                                 panel.remove(panel.getComponentCount()-1);
                             } else {
@@ -126,6 +128,7 @@ public class Main {
 
         panel.add(pool);
         panel.add(resetPool);
+        panel.add(cpm);
         panel.add(wpm);
         panel.add(accuracy);
         panel.add(startButton);
