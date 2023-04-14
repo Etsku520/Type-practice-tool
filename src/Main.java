@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.imageio.plugins.tiff.ExifTIFFTagSet;
 import javax.swing.*;
@@ -10,6 +11,11 @@ import javax.swing.border.LineBorder;
 
 public class Main {
     public static void main (String[] args) {
+        /* Monospaced, Serif, DialogInput */
+        String fontName = "Serif";
+        int fontStyle = Font.PLAIN;
+        int fontSize = 14;
+
         JFrame frame = new JFrame("Type practice!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 300);
@@ -22,7 +28,8 @@ public class Main {
         JLabel accuracy = new JLabel("0.0");
         JPanel textPanel = new JPanel();
 
-        JTextField pool = new JTextField(65);
+        JTextField pool = new JTextField(70);
+        pool.setFont(new Font(fontName, fontStyle, fontSize));
         pool.setText(tpt.getCurrentCharacterPool());
         pool.getDocument().addDocumentListener(new DocumentListener() {
             public void changedUpdate(DocumentEvent e) {
@@ -41,6 +48,7 @@ public class Main {
         });
 
         JTextField practiceArea = new JTextField(20);
+        practiceArea.setFont(new Font(fontName, fontStyle, fontSize));
         practiceArea.getDocument().addDocumentListener(new DocumentListener() {
             public void changedUpdate(DocumentEvent e) {
                 checkCorrectness();
@@ -111,6 +119,7 @@ public class Main {
                 textPanel.removeAll();
                 for (int i = 0; i < tpt.getCurrentText().length; i++) {
                     JLabel word = new JLabel(tpt.getCurrentText()[i]);
+                    word.setFont(new Font(fontName, fontStyle, fontSize));
                     if (i == 0) {
                         word.setBorder(new LineBorder(Color.RED, 2, true));
                     }
