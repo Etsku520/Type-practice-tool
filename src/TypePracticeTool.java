@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class TypePracticeTool {
-    private final static String DEFAULT_CHARACTER_POOL = new String("qwertyuiopåasdfghjklöäzxcvbnmQWERTYUIOPÅASDFGHJKLÖÄZXCVBNM1234567890,.-;:_<>'*¨^´`\"!#¤%&/()=?\\~|§½@£${[]}+");
+    private final static String DEFAULT_CHARACTER_POOL = new String("qwertyuiopåasdfghjklöäzxcvbnmQWERTYUIOPÅASDFGHJKLÖÄZXCVBNM1234567890,.-;:_<>'*¨^´`\"!#¤%&/()=?\\~|§½@£$€{[]}+");
     private String currentCharacterPool;
     private String[] currentText;
     private int currentWord;

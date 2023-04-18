@@ -5,6 +5,8 @@ import javax.imageio.plugins.tiff.ExifTIFFTagSet;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.event.*;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.border.LineBorder;
@@ -12,9 +14,33 @@ import javax.swing.border.LineBorder;
 public class Main {
     public static void main (String[] args) {
         /* Monospaced, Serif, DialogInput */
+
+        InputStream fontFileStream = null;
+        try {
+            fontFileStream = new FileInputStream("resources/FiraCode-Regular.ttf");
+        } catch(Exception ex) {
+            System.out.println("No file?");
+            System.exit(1);
+        } 
+
+        boolean gotFiraCode = false;
+        Font firaCode = null;
+        try {
+            firaCode = Font.createFont(Font.TRUETYPE_FONT, fontFileStream);
+            gotFiraCode = true;
+        } catch(Exception ex) {
+            System.exit(1);
+        }
         String fontName = "Serif";
         int fontStyle = Font.PLAIN;
         int fontSize = 14;
+
+        Font usedFont;
+        if (gotFiraCode) {
+            usedFont = firaCode.deriveFont(12f);
+        } else {
+            usedFont = new Font(fontName, fontStyle, fontSize);
+        }
 
         JFrame frame = new JFrame("Type practice!");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,8 +54,8 @@ public class Main {
         JLabel accuracy = new JLabel("0.0");
         JPanel textPanel = new JPanel();
 
-        JTextField pool = new JTextField(70);
-        pool.setFont(new Font(fontName, fontStyle, fontSize));
+        JTextField pool = new JTextField(100);
+        pool.setFont(usedFont);
         pool.setText(tpt.getCurrentCharacterPool());
         pool.getDocument().addDocumentListener(new DocumentListener() {
             public void changedUpdate(DocumentEvent e) {
@@ -48,7 +74,7 @@ public class Main {
         });
 
         JTextField practiceArea = new JTextField(20);
-        practiceArea.setFont(new Font(fontName, fontStyle, fontSize));
+        practiceArea.setFont(usedFont);
         practiceArea.getDocument().addDocumentListener(new DocumentListener() {
             public void changedUpdate(DocumentEvent e) {
                 checkCorrectness();
@@ -119,7 +145,7 @@ public class Main {
                 textPanel.removeAll();
                 for (int i = 0; i < tpt.getCurrentText().length; i++) {
                     JLabel word = new JLabel(tpt.getCurrentText()[i]);
-                    word.setFont(new Font(fontName, fontStyle, fontSize));
+                    word.setFont(usedFont);
                     if (i == 0) {
                         word.setBorder(new LineBorder(Color.RED, 2, true));
                     }
